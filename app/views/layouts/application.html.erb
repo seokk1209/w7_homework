@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>W5Prac</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <ul>
+        <li><%=current_user.name%>님 방가방가 :)</li>
+        <li><%= link_to '로그아웃', destroy_user_session_path, method: :delete%></li>
+        <li><%= link_to '개인정보', edit_user_registration_path %></li>
+
+      </ul>
+    <%else%>
+      <ul>
+        <li><%= link_to '회원가입', new_user_registration_path %></li>
+        <li><%= link_to '로그인', user_session_path %></li>
+      </ul>
+      <%end%>
+    
+    <%= yield %>
+  </body>
+</html>
